@@ -3,5 +3,6 @@ package myDemo;
 public class HelloWorld {
 	public static void main(String[] args) {
 		System.out.println("hello World");
+		System.out.println("String Hello World Test");
 	}
 }
