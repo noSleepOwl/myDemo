@@ -1,9 +1,11 @@
-package myDemo.myTools;
+package myDemo.myTools.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
+import myDemo.myTools.model.endModel;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
@@ -16,5 +18,14 @@ public @interface Description {
 	 * @return
 	 */
 	public String commandType() default "sys";
+	/**
+	 * 命令的概述 用于命令的描述 help 文档的获取之类的值
+	 * @return
+	 */
 	public String description() default "系统指令";
+	/**
+	 * 功能的实现类
+	 * @return
+	 */
+	public Class< ? super endModel> baseModelImpl ()  ;
 }
