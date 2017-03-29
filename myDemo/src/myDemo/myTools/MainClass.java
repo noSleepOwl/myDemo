@@ -11,14 +11,18 @@ public class MainClass {
 	 * 传入指令 获取类
 	 * @param command
 	 */
-	void run(Command command){
+	void run(Command command){  
 		Class<?> commandClass   =  command.getClass();
 		try {
-		     Description description =	(Description) commandClass.getField(command.toString()).getAnnotation(Description.class);
+			//获取枚举类 field 上面的注解
+		     Description description =	(Description) commandClass
+						    		 .getField(command.toString())
+						    		 .getAnnotation(Description.class);
 		     Class<?> clazz = description.baseModelImpl();
 		     BaseModel baseModel =(BaseModel) clazz.newInstance();  // 实例化的类
-		     
-		} catch (NoSuchFieldException e) {
+		     baseModel.parseArgv(""); // 对输入的参数进行解析 
+		     baseModel.run();   //执行对应的方法
+		} catch (NoSuchFieldException e) { 
 			e.printStackTrace();
 		} catch (SecurityException e) {
 			e.printStackTrace();
