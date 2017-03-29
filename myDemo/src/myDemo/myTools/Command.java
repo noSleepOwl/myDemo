@@ -8,10 +8,6 @@ import myDemo.myTools.model.endModel;
  * @author uigsw
  *
  */
-public interface Command {
-	/**
-	 * 结束命令
-	 */
-	@Description(commandType="sys",description="结束退出命令" ,baseModelImpl=endModel.class)
-	public static final String END="END";
+public enum Command {
+	@Description(baseModelImpl = endModel.class) END
 }
