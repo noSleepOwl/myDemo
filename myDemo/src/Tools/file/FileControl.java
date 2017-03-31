@@ -55,7 +55,7 @@ public abstract class FileControl {
 	}
 	
 	/**
-	 * 地址  : 处理
+	 * 批量的文件拷贝,
 	 * @param pathname
 	 * @param copyTargetPath
 	 * @return
@@ -76,7 +76,7 @@ public abstract class FileControl {
 	 * @param path
 	 * @return
 	 */
-	private File createDir(String path){
+	protected File createDir(String path){
 		File file = new File(path);
 		if(!file.exists()||file.isFile()) file.mkdirs();
 		return file;
@@ -86,9 +86,10 @@ public abstract class FileControl {
 	 * @param path
 	 * @return
 	 */
-	private String verifyPath(String path){
+	protected String verifyPath(String path){
 		char suffix = path.charAt(path.length()-1);
 		if(suffix == '\\' || suffix == '/') return path;
 		else return path+File.separator;
 	}
+	
 }
