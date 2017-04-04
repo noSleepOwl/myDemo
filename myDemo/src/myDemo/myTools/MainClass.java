@@ -1,14 +1,17 @@
 package myDemo.myTools;
 
+import java.util.Arrays;
+
 import myDemo.myTools.annotation.Description;
 import myDemo.myTools.model.BaseModel.BaseModel;
 
 public class MainClass {
 	public static void main(String[] args) {
+		System.out.println(Arrays.toString(args));
 		new MainClass().run(Command.END);
 	}
 	/**
-	 * 传入指令 获取类
+	 * 传入指令 获取类 ,封装的时候是有问题的, 我没有考虑到传参的问题啊?? 怎么破
 	 * @param command
 	 */
 	void run(Command command){  
