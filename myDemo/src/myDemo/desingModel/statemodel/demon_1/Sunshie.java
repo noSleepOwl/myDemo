@@ -1,4 +1,4 @@
-package myDemo.desingModel;
+package myDemo.desingModel.statemodel.demon_1;
 
 public class Sunshie implements State {
 	@Override

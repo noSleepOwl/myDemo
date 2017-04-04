@@ -1,7 +1,7 @@
 package Tools;
 
-import myDemo.desingModel.Context;
-import myDemo.desingModel.Sunshie;
+import myDemo.desingModel.statemodel.demon_1.Context;
+import myDemo.desingModel.statemodel.demon_1.Sunshie;
 
 public class TestClass {
 	public static void main(String[] args) {

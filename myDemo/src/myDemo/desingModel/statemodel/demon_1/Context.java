@@ -1,4 +1,4 @@
-package myDemo.desingModel;
+package myDemo.desingModel.statemodel.demon_1;
 
 /**
  * 保存当前状态的类型
