@@ -26,31 +26,28 @@ public abstract class FileControl {
 	 */
 	public boolean copyFile(String pathname,String copyTargetPath){
 		File file = new File(pathname);
-		File targetFile = this.createDir(copyTargetPath);
-		if(file.exists()&&file.isFile()){
-			BufferedInputStream bufferedInputStream = null;
-			BufferedOutputStream bufferedOutputStream = null;
+		File cpFile = new File(verifyPath(copyTargetPath)+file.getName());
+		if(!cpFile.exists()){
 			try {
-				File cpFile = new File(verifyPath(copyTargetPath)+file.getName());
-				if(!cpFile.exists())cpFile.createNewFile();
-				bufferedInputStream= new BufferedInputStream(new FileInputStream(file));
-				bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(cpFile));
+				cpFile.createNewFile();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+		if(file.exists()&&file.isFile()){
+			try (	BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(file));
+					BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(cpFile)); ){
 				byte [] b = new byte[bufferSize];
-				while(bufferedInputStream.read()>0){
+				while(bufferedInputStream.read(b)>0){
 					bufferedOutputStream.write(b);
 					bufferedOutputStream.flush();
 				}
 			} catch ( IOException e) {
 				e.printStackTrace();
-			}finally {
-				if(bufferedInputStream!= null)
-					try { bufferedInputStream.close(); } 
-					catch (IOException e) { e.printStackTrace();}
-				if(bufferedOutputStream != null)
-					try { bufferedOutputStream.close(); } 
-					catch (IOException e) { e.printStackTrace();}
 			}
-		}else return false;
+		}else{
+			return false;
+			}
 		return true;
 	}
 	

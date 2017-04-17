@@ -1,0 +1,54 @@
+<div class="modal-header"> 
+ <div class="row"> 
+  <!-- 标题信息 --> 
+  <div class="col-sm-4 h3">
+   $[name=(titleName) defaultValue=(学籍管理)]
+  </div> 
+  <!-- 功能区域 --> 
+  <div class="col-sm-8 text-right"> 
+   <c:if test="${model.id!=null }"> 
+    <button type="button" class="btn btn-addon btn-info" data-toggle="modal" href="$[name=(deleteButton) defaultValue=(${webctx }/app/common/cloud_alert.jsp?objName=User&amp;objId=${model.id })"> <i class="fa fa-cloud"></i>附件 </button> 
+    <button type="button" class="btn btn-danger" data-toggle="confirm" data-text="确认删除?" data-target="$[name=(tableId) defaultValue=(#modelTable)]" data-ok-ajax="${webctx }/sys/user/modelRecycle.noxa?model.id=${model.id }"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删除 </button> 
+   </c:if> 
+   <button type="button" class="btn btn-default" data-toggle="close" data-dismiss="modal">×</button> 
+  </div> 
+ </div> 
+</div> 
+<!-- modal 内容 --> 
+<div class="modal-body"> 
+ <form id="userViewForm" data-toggle="ajaxModalSubmit" data-target="#userTable" action="${webctx }/sys/user/modelSave.noxa" method="post" autocomplete="off"> 
+  <input type="hidden" name="model.id" value="${model.id }"> 
+  <div class="panel panel-default"> 
+   <div class="panel-heading bg-white"> 
+    <span class="font-bold">基本信息</span> 
+   </div> 
+   <div class="panel-body"> 
+    <div class="form-group col-sm-3"> 
+     <label>用户编码</label> 
+     <input type="text" name="model.code" value="${model.code }" class="form-control" required maxlength="100"> 
+    </div> 
+    <div class="form-group col-sm-3"> 
+     <label>用户名称</label> 
+     <input type="text" name="model.name" value="${model.name }" class="form-control" required maxlength="100"> 
+    </div> 
+    <div class="form-group col-sm-3"> 
+     <label>密码</label> 
+     <input type="text" name="model.passWord" value="test" class="form-control" required maxlength="100"> 
+    </div> 
+    <div class="form-group col-sm-3"> 
+     <label>用户状态</label> 
+     <select name="model.status" data-value="${model.status }" class="form-control" required> <option value="1">正常</option> <option value="0">停用</option> </select> 
+    </div> 
+    <div class="form-group col-sm-12"> 
+     <label>附件上传</label> 
+     <input class="file" type="file" data-toggle="fileInput" data-obj="User" data-id="${model.id}" data-submit="auto" multiple="true" data-preview-file-type="any"> 
+    </div> 
+   </div> 
+  </div> 
+ </form> 
+</div> 
+<!-- 底部 --> 
+<div class="modal-footer"> 
+ <button type="button" class="btn w-xs btn-default" data-toggle="close" data-dismiss="modal">关闭</button> 
+ <button type="submit" form="userViewForm" class="btn btn-primary w-xs">提交</button> 
+</div>

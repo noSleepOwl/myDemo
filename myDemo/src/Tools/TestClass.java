@@ -1,14 +1,18 @@
 package Tools;
 
-import myDemo.desingModel.adapterModel.Source;
-import myDemo.desingModel.adapterModel.TargetTable;
-import myDemo.desingModel.adapterModel.Warpper;
+import org.apache.ibatis.session.SqlSession;
+import org.mybatis.guice.MyBatisModule;
 
-public class TestClass {
+import myDemo.database.ibatis.service.MybaticService;
+
+public class TestClass{
 	public static void main(String[] args) {
-		Source source = new Source();
-		TargetTable tar  = new Warpper(source);
-		tar.method1();
-		tar.method2();
+		int res = new MybaticService<Integer>(o->{
+			return o.countAll();
+		}).run();
+		System.out.println(res);
+		SqlSession session = MybaticService.getSession();
+		session.selectList("");
+		
 	}
 }

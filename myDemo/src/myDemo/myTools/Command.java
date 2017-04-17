@@ -12,7 +12,9 @@ import myDemo.myTools.model.helpModel;
  *
  */
 public enum Command {
-	@Description(baseModelImpl = endModel.class,type="sys",helpInfo="用于命令的结束") END,
-	@Description(baseModelImpl = helpModel.class,type="sys",helpInfo="帮助命令") HELP
+	@Description(baseModelImpl = endModel.class,type="sys",helpInfo="用于命令的结束") 
+	END,
+	@Description(baseModelImpl = helpModel.class,type="sys",helpInfo="帮助命令") 
+	HELP
 	
 }
