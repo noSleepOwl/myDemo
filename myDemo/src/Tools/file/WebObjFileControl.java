@@ -1,8 +1,15 @@
 package Tools.file;
 
+import java.io.File;
 import java.nio.file.Paths;
+import java.util.List;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.apache.tools.ant.taskdefs.optional.jsp.JspC.WebAppParameter;
+
+import Tools.webproject.WebProject;
 
 /**
  * 项目文件的操作类
@@ -10,6 +17,14 @@ import java.util.regex.Pattern;
  *
  */
 public class WebObjFileControl  extends FileControl{
+	private WebProject webProject ;
+	public WebObjFileControl(WebProject webProject){
+		this.webProject = webProject;
+	}
+	/**
+	 * 项目地址
+	 */
+	private String projectDir;
 	/**
 	 * 项目资源文件的地址
 	 */
@@ -18,7 +33,6 @@ public class WebObjFileControl  extends FileControl{
 	 * web应用的地址
 	 */
 	private String webAppDir;
-	
 	/**
 	 * 包名替换路径名称
 	 * @param packagePath
@@ -68,4 +82,19 @@ public class WebObjFileControl  extends FileControl{
 	public void setWebAppDir(String webAppDir) {
 		this.webAppDir = verifyPath(Paths.get(webAppDir).toString());
 	}
+	/**
+	 * 根据 过滤器获取所有的 jsp文件
+	 * @return 
+	 */
+	public List<File> getJspFiles(Predicate<String> filter){
+		File file = new File(webAppDir);
+		return getFileByFilter(file, filter);
+	}
+	public String getProjectDir() {
+		return projectDir;
+	}
+	public void setProjectDir(String projectDir) {
+		this.projectDir = projectDir;
+	}
+	
 }
